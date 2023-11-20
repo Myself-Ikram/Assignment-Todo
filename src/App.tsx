@@ -4,7 +4,7 @@ import Body from "./components/Body";
 
 function App() {
   return (
-    <div>
+    <div style={{ transition: "0.5s" }}>
       <Header />
       <Body />
     </div>

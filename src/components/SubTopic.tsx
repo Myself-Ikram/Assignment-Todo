@@ -81,7 +81,9 @@ function SubTopic({ task, delTopic, title }: Params) {
         onClick={() => setShow(!show)}
       >
         <h5>{task.date}</h5>
-        <ArrowDropDownCircleIcon style={{ color: "green" }} />
+        <ArrowDropDownCircleIcon
+          sx={{ color: "black", transform: show ? "rotate(180deg)" : "none" }}
+        />
       </Box>
       <Box
         sx={{
@@ -89,7 +91,16 @@ function SubTopic({ task, delTopic, title }: Params) {
           marginTop: -2.5,
         }}
       >
-        <p style={{ fontSize: 15, marginTop: -5 }}>{task.desc}</p>
+        <p
+          style={{
+            fontSize: 15,
+            marginTop: -5,
+            color: "#374151",
+            fontStyle: "italic",
+          }}
+        >
+          "{task.desc}"
+        </p>
       </Box>
     </Box>
   );

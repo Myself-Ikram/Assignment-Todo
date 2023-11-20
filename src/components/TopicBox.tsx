@@ -25,6 +25,8 @@ function TopicBox({ title, allTopics, delTopic }: Params) {
         borderRadius: 5,
         height: "fit-content",
         paddingY: 2,
+        width: { xs: "65vw", sm: "auto" },
+        "&:hover": { boxShadow: 5 },
       }}
     >
       <Box

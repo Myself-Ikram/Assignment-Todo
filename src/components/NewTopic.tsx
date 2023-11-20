@@ -14,17 +14,16 @@ function NewTopic({ addNewTopic }: any) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "white",
-            boxShadow: 1,
+            color: "#16a34a",
           }}
         >
           <p onClick={() => setShowForm(true)}>
             <LoupeIcon
               sx={{
-                fontSize: 35,
+                fontSize: 50,
                 boxShadow: 2,
                 borderRadius: 5,
-                color: "",
+                "&:hover": { boxShadow: 5 },
               }}
             />
           </p>

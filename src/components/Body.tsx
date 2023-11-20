@@ -2,20 +2,13 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 import TopicBox from "./TopicBox";
 import NewTopic from "./NewTopic";
-
-const initialData = [
-  {
-    name: "Test",
-    desc: "This is an test desc",
-    date: "2023-12-03",
-    priority: "medium",
-  },
-];
+import { initialValues } from "./data";
 
 function Body() {
-  const [todo, setTodo] = useState(initialData);
-  const [speak, setSpeak] = useState(initialData);
-  const [place, setPlace] = useState(initialData);
+  const { initialTodo, initialSpeak, initialPlace } = initialValues;
+  const [todo, setTodo] = useState([initialTodo]);
+  const [speak, setSpeak] = useState([initialSpeak]);
+  const [place, setPlace] = useState([initialPlace]);
 
   function addNewTopic(data: any) {
     const { name, desc, dueDate, priority, category } = data;
@@ -33,8 +26,6 @@ function Body() {
     }
   }
   function delTopic(category: string, name: string) {
-    console.log({ category, name });
-
     switch (category) {
       case "PERSON TO SPEAK":
         setSpeak(speak.filter((item) => item.name !== name));
@@ -51,25 +42,41 @@ function Body() {
   return (
     <Box
       sx={{
-        display: { xs: "flex", md: "grid" },
+        display: { xs: "flex" },
         flexDirection: { xs: "column" },
-        gridTemplateColumns: "repeat(4,1fr)",
         gap: 5,
-        paddingX: 5,
+        paddingX: { md: 5 },
       }}
     >
-      <NewTopic addNewTopic={addNewTopic} />
-      <TopicBox title={"TODO"} allTopics={todo} delTopic={delTopic} />
-      <TopicBox
-        title={"PERSON TO SPEAK"}
-        allTopics={speak}
-        delTopic={delTopic}
-      />
-      <TopicBox
-        title={"PLACES TO VISIT"}
-        allTopics={place}
-        delTopic={delTopic}
-      />
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <NewTopic addNewTopic={addNewTopic} />
+      </Box>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(3,1fr)",
+            sm: "repeat(2,1fr)",
+            md: "repeat(3,1fr)",
+          },
+          overflow: { xs: "scroll", sm: "unset" },
+          gap: 5,
+          paddingX: 5,
+          paddingY: 2,
+        }}
+      >
+        <TopicBox title={"TODO"} allTopics={todo} delTopic={delTopic} />
+        <TopicBox
+          title={"PERSON TO SPEAK"}
+          allTopics={speak}
+          delTopic={delTopic}
+        />
+        <TopicBox
+          title={"PLACES TO VISIT"}
+          allTopics={place}
+          delTopic={delTopic}
+        />
+      </Box>
     </Box>
   );
 }
